@@ -58,6 +58,8 @@ function SetDisplayValue(element, value, shouldReplace = false) {
     element.text(text.split(':')[0] + ': ' + value)
 
   }
+  
+  element.show()
 }
 
 function InitializeCalculators() {
@@ -107,12 +109,13 @@ function InitializeCalculators() {
           "coverage": coverage.val() / 100
         }
       }
+      
+      var copayMarker = $(".calc.copay." + id)
+      var copay = GetMarkerElement(copayMarker)
+      
+      copay.hide()
 
       displayResults = function(data) {
-        var copayMarker = $(".calc.copay." + id)
-
-        var copay = GetMarkerElement(copayMarker)
-
         SetDisplayValue(copay, data.SessionFee, copayMarker.hasClass('replace'))
       }
 
@@ -144,20 +147,26 @@ function InitializeCalculators() {
           "householdMembers": householdMembers.val(),
         }
       }
+      
+      var sessionFeeMarker = $(".calc.session-fee." + id)
+      var sessionFee = GetMarkerElement(sessionFeeMarker)
+      
+      sessionFee.hide()
+      
+      var monthlyRateMarker = $(".calc.monthly-rate." + id)
+      var monthlyRate = GetMarkerElement(monthlyRateMarker)
+      
+      monthlyRate.hide()
+      
+      var monthsPayoffMarker = $(".calc.months-payoff." + id)
+      var monthsPayoffRate = GetMarkerElement(monthsPayoffMarker)
+      
+      monthsPayoffRate.hide()
 
       displayResults = function(data) {
-        var sessionFeeMarker = $(".calc.session-fee." + id)
-        var sessionFee = GetMarkerElement(sessionFeeMarker)
+        SetDisplayValue(sessionFee, data.SessionFee, sessionFeeMarker.hasClass('replace'))        
 
-        SetDisplayValue(sessionFee, data.SessionFee, sessionFeeMarker.hasClass('replace'))
-
-        var monthlyRateMarker = $(".calc.monthly-rate." + id)
-        var monthlyRate = GetMarkerElement(monthlyRateMarker)
-
-        SetDisplayValue(monthlyRate, data.MonthlyFee, monthlyRateMarker.hasClass('replace'))
-
-        var monthsPayoffMarker = $(".calc.months-payoff." + id)
-        var monthsPayoffRate = GetMarkerElement(monthsPayoffMarker)
+        SetDisplayValue(monthlyRate, data.MonthlyFee, monthlyRateMarker.hasClass('replace'))        
 
         SetDisplayValue(monthsPayoffRate, data.MonthsToPayOff, monthsPayoffMarker.hasClass('replace'))
 
