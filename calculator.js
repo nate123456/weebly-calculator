@@ -140,12 +140,12 @@ function InitializeCalculators() {
 
         var householdMembers = GetMarkerElement(householdMemberMarker, "input[type='radio']:checked")
 
-        var finalIncome = income.val().split('$')[1].replace(',', '')
+        var finalIncome = parseInt(income.val().split('$')[1].replace(',', ''))
 
         if (~income.val().toLowerCase().indexOf("less than")) {
-          finalIncome = 5000
+          finalIncome -= 5000
         } else if (~income.val().toLowerCase().indexOf("more than")) {
-          finalIncome = 101000
+          finalIncome += 5000
         }
 
         return {
@@ -190,7 +190,3 @@ function InitializeCalculators() {
 }
 
 InitializeCalculators()
-
-$("#shitty").on('click', function() {
-  $("#form-376540936876382466").submit()
-})
