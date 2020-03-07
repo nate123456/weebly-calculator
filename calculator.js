@@ -140,10 +140,18 @@ function InitializeCalculators() {
 
         var householdMembers = GetMarkerElement(householdMemberMarker, "input[type='radio']:checked")
 
-        console.log(income)
+        var finalIncome = income.val().split('$')[1].replace(',', '')        
+               
+        if (~income.val().toLowerCase().indexOf("less than")){
+          finalIncome = 5000
+        }
+        else if (~income.val().toLowerCase().indexOf("more than")){
+          finalIncome = 101000
+        }
+        
         return {
           "coverage": coverage.val() / 100,
-          "income": income.val().split('$')[1].replace(',', ''),
+          "income": finalIncome,
           "householdMembers": householdMembers.val(),
         }
       }
