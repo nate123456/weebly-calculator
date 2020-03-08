@@ -93,16 +93,16 @@ function InitializeCalculators() {
     if (name.length) {
       submit.text(name)
     }
+    
+    var coverageMarker = $(".calc.coverage." + id)
+    var coverage = GetMarkerElement(coverageMarker, "input")
+
+    coverage.prop('type', 'number')
+    coverage.prop('min', '0')
+    coverage.prop('max', '100')
 
     if (formMarker.hasClass("copay")) {
-      console.log("[CALCULATOR] Registering form as copay form.")
-
-      var coverageMarker = $(".calc.coverage." + id)
-      var coverage = GetMarkerElement(coverageMarker, "input")
-
-      coverage.prop('type', 'number')
-      coverage.prop('min', '0')
-      coverage.prop('max', '100')
+      console.log("[CALCULATOR] Registering form as copay form.")      
 
       getArguments = function() {
         return {
@@ -124,13 +124,6 @@ function InitializeCalculators() {
     } else if (formMarker.hasClass("income")) {
       console.log("[CALCULATOR] Registering form as income form.")
 
-      var coverageMarker = $(".calc.coverage." + id)
-      var coverage = GetMarkerElement(coverageMarker, "input")
-
-      coverage.prop('type', 'number')
-      coverage.prop('min', '0')
-      coverage.prop('max', '100')
-
       var incomeMarker = $(".calc.income." + id)
 
       var householdMemberMarker = $(".calc.household." + id)
@@ -146,8 +139,8 @@ function InitializeCalculators() {
           finalIncome -= 5000
         } else if (~income.val().toLowerCase().indexOf("more than")) {
           finalIncome += 5000
-        }
-
+        }      
+        
         return {
           "coverage": coverage.val() / 100,
           "income": finalIncome,
