@@ -164,7 +164,7 @@ function InitializeCalculators() {
       monthsPayoffRate.hide()
 
       displayResults = function(data) {
-        // SetDisplayValue(sessionFee, data.SessionFee, sessionFeeMarker.hasClass('replace'))
+        SetDisplayValue(sessionFee, data.SessionFee, sessionFeeMarker.hasClass('replace'))
 
         SetDisplayValue(monthlyRate, data.MonthlyFee, monthlyRateMarker.hasClass('replace'))
 
