@@ -168,7 +168,7 @@ function InitializeCalculators() {
 
         SetDisplayValue(monthlyRate, data.MonthlyFee, monthlyRateMarker.hasClass('replace'))
 
-        SetDisplayValue(monthsPayoffRate, data.MonthsToPayOff + " months", monthsPayoffMarker.hasClass('replace'))
+        //SetDisplayValue(monthsPayoffRate, data.MonthsToPayOff + " months", monthsPayoffMarker.hasClass('replace'))
       }
 
     } else {
